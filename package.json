@@ -1,0 +1,15 @@
+{
+  "name": "c6-eye_in_the_sky",
+  "version": "1.0.0",
+  "description": "Keep an eye on the skies as if you were the god of meteorology.",
+  "main": "index.html",
+  "scripts": {
+    "tailwind": "tailwindcss -i ./assets/css/root.css -o ./assets/css/output.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.4"
+  }
+}
