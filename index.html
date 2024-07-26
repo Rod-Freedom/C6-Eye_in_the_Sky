@@ -12,33 +12,129 @@
         <link rel="stylesheet" href="./assets/css/root.css">
         <link rel="stylesheet" href="./assets/css/style.css">
         <link rel="stylesheet" href="./assets/css/header.css">
+        <link rel="stylesheet" href="./assets/css/main.css">
         <script src="https://kit.fontawesome.com/6df7fc2545.js" crossorigin="anonymous"></script>
         <script defer type="module" src="./assets/js/styles.js"></script>
         <script defer type="module" src="./assets/js/logic.js"></script>
-        <title>Eye in the Sky | Keep the weather on check!</title>
+        <title>Eye in the Sky | Keep the weather in check!</title>
     </head>
     
-    <body class="">
+    <body>
+        <div id="sorry-mobile">
+            <h1>Sorry!</h1>
+            <h2>This site doesn't have a mobile version yet.</h2>
+        </div>
+
         <header id="body-header">
             <div id="logo-div">
                 <div id="logo" class="logo-off eyeball-angle"></div>
             </div>
-            <h1 id="main-title" class="font-brand">Eye <span class="font-thin">in the</span> Sky</h1>
+            <h1 id="main-title">Eye <span class="font-thin">in the</span> Sky</h1>
             <section id="right-header">
                 <div id="input-div">
-                    <input id="city-input" class="font-brand" type="text" name="city" placeholder="Search for a city" autocomplete="one-time-code">
+                    <input id="city-input" type="text" name="city" placeholder="Search for a city" autocomplete="one-time-code">
                     <button id="btn-search"><i id="icon-search" class="fa-sharp fa-regular fa-location-crosshairs"></i></button>
-                    <!-- <div id="autocomp-div">
-                        <div id="spinner-circle" class="spinner-part">
-                            <div id="spinner" class="spinner-part"></div>
-                        </div>
-                        <ul id="autocomp-list" class="w-full px-3">
-                            <li class="city-option">San Francisco Francisco FranciscoFrancisco</li>
-                            <li class="city-option">Mexico</li>
-                        </ul>
-                    </div> -->
                 </div>
             </section>
         </header>
+
+        <main id="body-main">
+            <div id="weather-display" class="hidden">
+                <div id="bg-filter">
+                    <div id="bg-image"></div>
+                </div>
+    
+                <section id="saved-sec"></section>
+    
+                <section id="weather-sec">
+                    <div id="highlights-div">
+                        <h1 id="location" class="location">Col. Bosques de las Lomas</h1>
+                        <h2 id="temp">&nbsp;19º</h2>
+                        <h3 id="weather">light rain</h3>
+                    </div>
+                    
+                    <div id="forecast-div">
+                        <div id="forecast-title">
+                            <i id="forecast-icon" class="fa-light fa-windsock"></i>
+                            <h4>Forecast for the next 24 hours in your area.</h4>
+                        </div>
+
+                        <div id="hours-div" class="overflow-x-hidden" style="padding-bottom: 2px;"></div>
+                    </div>
+                    
+                    <div id="other-data-div">
+                        <div id="temp-specs">
+                            <div id="temp-specs-title">
+                                <i id="temp-icon" class="fa-light fa-temperature-three-quarters"></i>
+                                <h4>Temperature</h4>
+                            </div>
+    
+                            <div id="temp-specs-cont">
+                                <div id="min-temp-div">
+                                    <h3 id="min-temp">&nbsp;13º</h3>
+                                    <h4>min</h4>
+                                </div>
+                                
+                                <div id="thermostat-div">
+                                    <div id="thermostat" style="width: 0%;"></div>
+                                </div>
+    
+                                <div id="max-temp-div">
+                                    <h3 id="max-temp">&nbsp;23º</h3>
+                                    <h4>max</h4>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="press-specs">
+                            <div id="press-specs-title">
+                                <i id="press-icon" class="fa-light fa-gauge"></i>
+                                <h4>Pressure</h4>
+                            </div>
+
+                            <div id="press-specs-cont">
+                                <div id="barometer-div">
+                                    <div id="barometer">
+                                        <h4 id="pressure">1024<span id="press-units">hPa</span></h4>
+                                        <div id="gauge"></div>
+                                        <div id="needle-div" style="rotate: -90deg;">
+                                            <div id="needle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div id="min-max-press">
+                                    <div id="min-press-div"><h4>min</h4></div>
+                                    <div id="max-press-div"><h4>max</h4></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="other-specs">
+                            <div id="wind-specs-title">
+                                <i id="wind-icon" class="fa-light fa-wind"></i>
+                                <h4>Wind</h4>
+                            </div>
+                            
+                            <div id="wind-cont">
+                                <h4 id="wind">2<span id="wind-units">km/h</span></h4>
+                                <i id="wind-arrow" class="fa-solid fa-location-arrow-up"></i>
+                            </div>
+
+                            <div id="other-line-div"></div>
+                            
+                            <div id="wind-specs-title"><i id="humidity-icon" class="fa-light fa-droplet-percent"></i><h4>Humidity</h4></div>
+                            <h5 id="humidity">46<span id="humidity-units">%</span></h5>
+                        </div>
+                    </div>
+
+                    <div id="hours-div">
+                        <div id="houry-1" class="day-div">
+
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
     </body>
 </html>

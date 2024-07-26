@@ -2,6 +2,7 @@ import Logo from "./logo.js";
 
 const rootEl = document.querySelector(':root');
 const logo = document.querySelector('#logo');
+const hoursDiv = document.querySelector('#hours-div');
 const logoCenterValues = logo.getBoundingClientRect();
 const logoCenter = new Logo(logoCenterValues);
 
@@ -16,6 +17,22 @@ const logoHover = (event) => {
     if (type === 'mouseleave') {
         e.classList.add('logo-off');
         e.classList.remove('logo-on');
+    }
+};
+
+const hoursDivHover = (event) => {
+    const e = event.target;
+    const type = event.type;
+
+    if (type === 'mouseenter') {
+        e.classList.add('overflow-x-auto');
+        e.classList.remove('overflow-x-hidden');
+        e.style.paddingBottom = '0';
+    }
+    if (type === 'mouseleave') {
+        e.style.paddingBottom = '2px';
+        e.classList.add('overflow-x-hidden');
+        e.classList.remove('overflow-x-auto');
     }
 };
 
@@ -37,9 +54,14 @@ const eyeWatcher = (event) => {
     }
 };
 
+
+
 const startStyles = () => {
     logo.addEventListener('mouseenter', logoHover);
     logo.addEventListener('mouseleave', logoHover);
+    hoursDiv.addEventListener('mouseenter', hoursDivHover);
+    hoursDiv.addEventListener('mouseleave', hoursDivHover);
+
     document.addEventListener('mousemove', eyeWatcher)
 };
 
