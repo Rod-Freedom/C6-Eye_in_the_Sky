@@ -21,10 +21,11 @@
     margin: 0;
     padding: 0;
     font-family: var(--font-brand);
+    color: rgb(249, 250, 251)
 }
 
 body {
-    @apply flex flex-col min-h-screen w-screen bg-gray-800 relative;
+    @apply flex flex-col min-h-screen w-screen bg-gray-800 relative text-gray-50;
 }
 
 /* –––––––––––––––––––––– For Header –––––––––––––––––––––– */
