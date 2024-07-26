@@ -8,70 +8,402 @@
     --logo-y-offset: 2.5px;
     --font-brand: "Kanit", sans-serif;
     --brand-color: #0918c7;
+    --header-height: 60px;
+    --bg-weather: url(../images/weathers/broken.GIF);
+    --bg-weather-filter-day: none;
+    --bg-weather-filter-night: sepia() brightness(50%) hue-rotate(170deg) contrast(350%) grayscale(50%);
+    --bg-weather-filter-rainy: brightness(50%) contrast(120%) grayscale(70%);
+    --bg-weather-filter: var(--bg-weather-filter-day);
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: var(--font-brand);
 }
 
 body {
-    @apply flex flex-col h-screen w-screen bg-gray-800;
+    @apply flex flex-col min-h-screen w-screen bg-gray-800 relative;
 }
 
-#body-header {
-    @apply flex flex-row items-center justify-between bg-black w-full py-2 px-5;
-}
+/* –––––––––––––––––––––– For Header –––––––––––––––––––––– */
+    #body-header {
+        @apply flex flex-row items-center justify-between bg-gray-900 w-full py-2 px-5 z-40;
+    }
 
-#right-header {
-    @apply flex flex-row h-full items-center justify-end ml-auto w-1/3;
-}
+    #right-header {
+        @apply flex flex-row h-full items-center justify-end ml-auto w-1/3;
+    }
 
-#logo-div {
-    @apply flex justify-start items-center mr-auto w-1/3;
-}
+    #logo-div {
+        @apply flex justify-start items-center mr-auto w-1/3;
+    }
 
-#logo {
-    @apply flex justify-center items-center relative;
-}
+    #logo {
+        @apply flex justify-center items-center relative;
+    }
 
-#main-title {
-    @apply text-3xl font-semibold;
-}
+    #main-title {
+        @apply text-3xl font-semibold;
+    }
 
-#input-div {
-    @apply h-full flex flex-row justify-center items-center relative;
-}
+    #input-div {
+        @apply h-full flex flex-row justify-center items-center relative;
+    }
 
-#city-input {
-    @apply h-full w-72 bg-gray-800 focus:bg-gray-900 pl-5 border-2 border-gray-800 text-white;
-}
+    #city-input {
+        @apply h-full w-72 bg-gray-800 focus:bg-gray-900 pl-5 border-2 border-gray-800 text-white;
+    }
 
-#btn-search {
-    @apply h-full px-5;
-}
+    #btn-search {
+        @apply h-full px-5;
+    }
 
-#icon-search {
-    @apply text-white text-2xl;
-}
+    #icon-search {
+        @apply text-white text-2xl;
+    }
 
-#autocomp-div {
-    @apply flex flex-col justify-center items-center absolute bg-gray-700 rounded-xl py-2;
-}
+    #autocomp-div {
+        @apply flex flex-col justify-center items-center absolute bg-gray-700 rounded-xl py-2;
+    }
 
-#spinner-circle {
-    @apply relative flex justify-center items-center mx-auto;
-}
+    #spinner-circle {
+        @apply relative flex justify-center items-center mx-auto;
+    }
 
-#spinner {
-    @apply absolute animate-spin;
-}
+    #spinner {
+        @apply absolute animate-spin;
+    }
 
-#autocomp-list {
-    @apply w-full px-3;
-}
+    #autocomp-list {
+        @apply w-full px-3;
+    }
 
-.city-option {
-    @apply w-full text-nowrap text-start text-ellipsis overflow-hidden whitespace-nowrap text-gray-300 rounded-md px-2 bg-gray-700;
+    .city-option {
+        @apply w-full text-nowrap text-start text-ellipsis overflow-hidden whitespace-nowrap text-gray-300 rounded-md px-2 bg-gray-700 cursor-pointer;
+    }
+/* End of header */
+
+/* –––––––––––––––––––––– For Main –––––––––––––––––––––– */
+    #body-main {
+        @apply w-full flex flex-row justify-center items-center relative;
+    }
+
+    /* User prompts */
+        #no-location-div {
+            @apply flex flex-col items-center z-20;
+        }
+
+        #no-location {
+            @apply text-3xl py-3;
+        }
+
+        #btn-location{
+            @apply bg-gray-800 text-xl font-light rounded-xl hover:brightness-150 py-3 px-5 active:scale-95;
+        }
+
+        #location-icon {
+            @apply pr-3;
+        }
+
+        #location-popup {
+            @apply absolute
+        }
+
+        #sorry-filter {
+            @apply absolute flex justify-center items-center h-full w-full bg-black/30 z-30;
+        }
+
+        #sorry-div {
+            @apply flex flex-col justify-around items-center bg-black text-center py-5 px-10 rounded-xl border border-gray-500;
+        }
+
+        #sorry {
+            @apply text-xl font-thin;
+        }
+
+        #btn-close-sorry {
+            @apply mt-5 active:scale-95 cursor-pointer;
+        }
+
+        #loading-div {
+            @apply flex justify-center items-center absolute w-full h-full z-50;
+        }
+
+        #loading-bg {
+            @apply w-full h-full bg-gray-950;
+        }
+
+        #loading-icons {
+            @apply absolute flex flex-col justify-center items-center;
+        }
+
+        #loading-logo-div {
+            @apply flex justify-center items-center relative;
+        }
+
+        #loading-logo-animate {
+            @apply h-24 w-24 rounded-full bg-white absolute animate-ping;
+        }
+        
+        #loading-logo {
+            @apply h-32 w-32 rounded-full z-10;
+        }
+
+        #loading-text {
+            @apply text-3xl mt-10 animate-pulse;
+        }
+
+        #sorry-mobile {
+            display: none;
+            @apply h-full w-full flex-col justify-center items-center absolute;
+        }
+
+        #sorry-mobile h1 {
+            @apply text-4xl mb-3;
+        }
+
+        #no-results {
+            @apply absolute flex flex-col justify-center items-center bg-gray-950/70 rounded-xl py-5 px-10 z-50;
+        }
+
+        #no-results h1 {
+            @apply text-4xl;
+        }
+        
+        #no-results h2 {
+            @apply font-thin text-xl;
+        }
+    /* end of prompts */
+
+    /* for weather section */
+        #weather-display {
+            @apply w-full h-full flex-row justify-center items-center relative;
+        }
+
+        #bg-filter {
+            @apply h-full w-full absolute z-0 flex justify-center items-center;
+        }
+
+        #bg-image {
+            @apply w-full h-full absolute;
+        }
+
+        #saved-sec {
+            @apply w-1/5 h-full z-10 flex flex-col justify-start items-center px-5 py-2 bg-gray-950/20 border-r border-r-gray-200/50;
+        }
+
+        #weather-sec {
+            @apply w-4/5 h-full z-10 flex flex-col justify-center items-center;
+        }
+
+        /* for today highlights */
+            #highlights-div {
+                @apply flex flex-col justify-center items-center;
+            }
+        
+            #location {
+                @apply text-2xl relative flex flex-row items-center justify-center;
+            }
+
+            .location::before {
+                @apply absolute h-3 w-3 bg-green-400 rounded-full animate-ping;
+            }
+
+            .location::after {
+                @apply absolute h-3 w-3 bg-green-400 rounded-full ;
+            }
+
+            #temp {
+                @apply text-9xl;
+            }
+
+            #weather {
+                @apply text-xl;
+            }
+        /* end today highlights */
+        
+        /* for 24h forecast */
+            #forecast-div {
+                @apply flex flex-col w-2/3 rounded-xl bg-gray-950/50 px-5 py-2 my-6;
+            }
+
+            #forecast-title {
+                @apply flex flex-row justify-start items-center font-thin text-lg border-b border-gray-50/50 px-2 pb-2;
+            }
+
+            #temp-icon, #press-icon, #wind-icon, #humidity-icon, #forecast-icon {
+                @apply mr-2;
+            }
+
+            #hours-div {
+                @apply flex flex-row flex-nowrap justify-start items-center pt-2;
+            }
+
+            #hours-div::-webkit-scrollbar { 
+                height: 2px;
+            }
+            
+            #hours-div::-webkit-scrollbar-track {
+                background-color: rgba(156, 163, 175, .5);
+            }
+            
+            #hours-div::-webkit-scrollbar-thumb {
+                background-color: rgba(229, 231, 235, 1);
+                border-radius: 3px;
+            }
+
+            .hour-div {
+                @apply flex flex-col justify-center items-center shrink-0 px-1 py-1;
+            }
+
+            .hour-temp {
+                @apply font-light text-lg;
+            }
+
+            .time {
+                @apply flex flex-row font-thin justify-center items-center;
+            }
+
+            .weather-icon {
+                @apply h-10 w-10;
+            }
+        /* end 24h forecast */
+
+        /* for weather specs */
+            #other-data-div {
+                @apply flex flex-row w-2/3;
+            }
+
+            /* temp */
+                #temp-specs {
+                    @apply flex flex-col h-36 w-1/2 rounded-xl bg-gray-950/50 px-5 py-2 mr-3;
+                }
+
+                #temp-specs-title, #press-specs-title, #wind-specs-title, #humid-specs-title {
+                    @apply flex flex-row justify-center items-center font-thin text-lg;
+                }
+
+                #temp-specs-cont {
+                    @apply flex flex-row justify-between items-center grow;
+                }
+
+                #min-temp-div, #max-temp-div, #min-press-div, #max-press-div {
+                    @apply flex flex-col items-center justify-center;
+                }
+
+                #min-temp, #max-temp {
+                    @apply text-2xl font-light;
+                }
+
+                #thermostat-div {
+                    @apply flex flex-row justify-start grow rounded-full bg-gray-400/50 mx-5 h-2;
+                }
+
+                #thermostat {
+                    @apply rounded-full bg-gray-200;
+                }
+            /* end temp */
+
+            /* pressure */
+                #press-specs {
+                    @apply flex flex-col h-36 w-1/4 rounded-xl bg-gray-950/50 px-5 py-2 mx-3;
+                }
+
+                #press-specs-cont {
+                    @apply flex flex-col justify-between items-center grow;
+                }
+
+                #barometer-div {
+                    @apply flex flex-row justify-center items-center grow pt-1 w-full;
+                }
+
+                #barometer {
+                    @apply flex justify-center items-center relative;
+                }
+
+                #pressure {
+                    @apply flex flex-col justify-center items-center absolute font-light text-xl;
+                }
+
+                #press-units {
+                    @apply font-thin text-sm;
+                }
+
+                #gauge {
+                    @apply w-full h-full;
+                }
+
+                #needle-div {
+                    @apply flex flex-row justify-center items-start absolute;
+                }
+                
+                #needle {
+                    @apply h-1/6 w-1 bg-gray-50 rounded-full;
+                }
+
+                #min-max-press {
+                    @apply flex flex-row items-center w-full font-light;
+                }
+            /* end pressure */
+            
+            /* wind & humidity */
+                #other-specs {
+                    @apply flex flex-col h-36 w-1/4 rounded-xl bg-gray-950/50 px-5 py-2 ml-3;
+                }
+
+                #wind-cont {
+                    @apply flex flex-row justify-center items-center;
+                }
+
+                #wind, #humidity {
+                    @apply h-7 flex flex-row justify-center items-center text-2xl;
+                }
+
+                #wind-units, #humidity-units {
+                    @apply h-6 flex flex-row items-end justify-center font-thin text-sm ml-1;
+                }
+
+                #other-line-div {
+                    @apply my-auto border-t border-gray-50/50;
+                }
+            /* end wind & humidity */
+        /* end weather specs */
+
+        /* Next Days */
+            #days-div {
+                @apply flex flex-row items-center justify-center;
+            }
+        /* end Next Days */
+        
+        /* for saved section */
+            .saved-location {
+                @apply bg-gray-950/50 hover:bg-gray-600/50 flex justify-center items-center w-full rounded-xl text-2xl font-light my-3 py-2 px-4 cursor-pointer;
+            }
+            
+            .saved-location h1 {
+                @apply text-nowrap text-center text-ellipsis overflow-hidden whitespace-nowrap;
+            }
+
+            #current-loc {
+                @apply flex justify-center items-center w-full rounded-xl text-2xl font-light my-3 py-2 px-4 cursor-pointer;
+            }
+            
+            #current-loc h1 {
+                @apply text-nowrap text-center text-ellipsis overflow-hidden whitespace-nowrap;
+            }
+        /* end saved section */
+    /* end weather section */
+/* End for Main */
+
+/* Gral media queries */
+@media (max-width: 1000px) {
+    #body-main, #body-header  {
+        display: none;
+    }
+
+    #sorry-mobile {
+        display: flex;
+    }
 }
