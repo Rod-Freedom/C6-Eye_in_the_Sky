@@ -115,7 +115,6 @@ const arrowSelectFunc = (listEls) => {
             const cityLocation = listEls[counter].dataset;
 
             arrowsController.abort();
-            updateLocalStorage(cityLocation);
             startForecast(cityLocation);
             inputCity.blur();
             autocompDiv.replaceChildren();
@@ -147,7 +146,6 @@ const btnSearchEvent = () => {
         const cityLocation = autocompList.children[0].dataset;
 
         arrowsController.abort();
-        updateLocalStorage(cityLocation);
         startForecast(cityLocation);
         inputCity.blur();
         autocompDiv.replaceChildren();
@@ -218,7 +216,10 @@ const promptNoPermission = () => {
 const startForecast = async (locObj) => {
     const { live } = locObj;
     bodyEl.appendChild(loadingScreen);
+    
+    if (!live) updateLocalStorage(locObj);
     renderSaves();
+    
     if (mainEl.contains(noLocDiv)) mainEl.removeChild(noLocDiv);
 
     if (live) currentLocation = await getLocation()
