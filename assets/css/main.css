@@ -26,12 +26,12 @@
 
 #location::before {
     content: '';
-    left: -10%;
+    left: -25px;
 }
 
 #location::after {
     content: '';
-    left: -10%;
+    left: -25px;
 }
 
 #thermostat {
